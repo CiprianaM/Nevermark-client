@@ -1,0 +1,28 @@
+.filters-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+.filter-elements-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 800px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid;
+  border-bottom-color:rgb(235, 235, 235);
+}
+.filter-button {
+  font-size: 1.4rem;
+  line-height: 20px;
+  text-align: center;
+  border: 1px solid;
+  border-radius: 5px;
+  margin-right: 10px;
+  padding: 5px;
+  border-color: rgb(235, 235, 235);
+}
+.filter-button:hover {
+  border-color: black;
+}

@@ -1,0 +1,14 @@
+.results-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+.results-elements-container {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid;
+  border-bottom-color:rgb(235, 235, 235);
+}
