@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './Result.css';
 
@@ -21,5 +22,12 @@ const Result: React.FC<MatchProps> = ({
     <a href={fullurl} className="result-url" target="_blank" rel="noopener noreferrer">{fullurl}</a>
   </div>
 );
+
+Result.propTypes = {
+  fullurl : PropTypes.string.isRequired,
+  fulltitle : PropTypes.string.isRequired,
+  text : PropTypes.string.isRequired,
+  timespent : PropTypes.number.isRequired,
+};
 
 export default Result;

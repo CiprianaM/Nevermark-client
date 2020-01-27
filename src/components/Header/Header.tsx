@@ -1,4 +1,7 @@
-import React from 'react';
+import React,{ useState } from 'react';
+import PropTypes from 'prop-types';
+// import { browserHistory } from 'react-router-dom';
+
 import searchIcon from '../../assets/search-icon.svg';
 
 import './Header.css';
@@ -8,6 +11,12 @@ interface SearchProps {
 }
 
 const Header: React.FC<SearchProps> = ({ query }) => {
+  const [searchInput,setSearchInput] = useState(query);
+
+  const updateQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(e.target.value);
+  };
+
   return (
     <header className="header">
       <div className="logo-container">
@@ -15,10 +24,19 @@ const Header: React.FC<SearchProps> = ({ query }) => {
       </div>
       <div className="search-bar-container">
         <div className="search-icon-container">
-          <img src={searchIcon} alt="Search Icon" className="search-icon"/>
+          <img src={searchIcon} alt="Search Icon" className="search-icon" />
         </div>
         <div className="search-input-container">
-          <input className="search-bar" spellCheck="false" autoComplete="off" name="query" placeholder="Search" type="text" value={query}></input>
+          <input
+            className="search-bar"
+            spellCheck="false"
+            autoComplete="off"
+            name="query"
+            placeholder="Search"
+            type="text"
+            value={searchInput}
+            onChange={updateQuery}
+          />
         </div>
       </div>
       <nav className="header-nav">
@@ -28,7 +46,11 @@ const Header: React.FC<SearchProps> = ({ query }) => {
         </ul>
       </nav>
     </header>
-  )
-}
+  );
+};
+
+Header.propTypes = {
+  query : PropTypes.string.isRequired,
+};
 
 export default Header;
