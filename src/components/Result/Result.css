@@ -1,0 +1,23 @@
+/* CONTAINERS */
+.result-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+}
+.title-timespent-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+/* ELEMENTS */
+.result-title {
+  font-size: 1.6rem;
+  padding-bottom: 10px;
+}
+.result-text {
+  font-size: 1.4rem;
+  padding-bottom: 10px;
+}
+.result-url {
+  color: #A15CFF;
+}
