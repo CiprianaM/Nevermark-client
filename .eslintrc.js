@@ -20,6 +20,16 @@ module.exports = {
     }
   },
   rules: {
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+   ],
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.tsx'] }],
     "quotes": ["error", "single", { "avoidEscape": true }],
     "indent": ["error", 2],
