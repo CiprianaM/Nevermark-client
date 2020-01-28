@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Link } from 'react-router-dom';
+
 import './HeaderLoginSignup.css';
 
 interface HeaderLoginSignupProps {
@@ -10,9 +12,11 @@ interface HeaderLoginSignupProps {
 
 const HeaderLoginSignup: React.FC<HeaderLoginSignupProps> = ({ handleSignOpen,handleLogOpen }) => (
   <header className="header-loginsignup">
-    <div className="logo-container-loginsignup">
-      <a href="#home" className="logo-loginsignup">nevermark</a>
-    </div>
+    <Link to="/">
+      <div className="logo-congainer-loginsignup">
+        <span className="logo-loginsignup">nevermark</span>
+      </div>
+    </Link>
     <nav className="header-loginsignup-nav">
       <ul className="nav-list-loginsignup">
         <li className="nav-element-loginsignup">

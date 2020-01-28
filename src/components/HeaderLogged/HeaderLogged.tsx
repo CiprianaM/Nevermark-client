@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Link } from 'react-router-dom';
 import searchIcon from '../../assets/search-icon.svg';
 
 import './HeaderLogged.css';
@@ -12,7 +13,9 @@ interface SearchProps {
 const HeaderLogged: React.FC<SearchProps> = ({ updateQuery }) => (
   <header className="header-logged">
     <div className="logo-container-logged">
-      <a href="#home" className="logo-logged">nevermark</a>
+      <Link to="/">
+        <span className="logo-logged">nevermark</span>
+      </Link>
     </div>
     <div className="search-bar-container">
       <div className="search-icon-container">

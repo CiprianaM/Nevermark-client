@@ -1,6 +1,7 @@
 import React from 'react';
-
 import PropTypes from 'prop-types';
+
+import { Link } from 'react-router-dom';
 
 import './Footer.css';
 
@@ -12,7 +13,11 @@ interface FooterProps {
 const Footer: React.FC<FooterProps> = ({ handleSignOpen,handleLogOpen }) => (
   <footer className="footer-container">
     <div className="footer-els-container">
-      <a href="#home" className="logo-footer">nevermark</a>
+      <Link to="/">
+        <div className="logo-footer">
+          <span>nevermark</span>
+        </div>
+      </Link>
       <div className="footer-els-container-links-fir">
         <span className="footer-el">
           <button type="button" className="footer-el-link button-footer" onClick={handleSignOpen}>
