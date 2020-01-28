@@ -58,6 +58,7 @@
   padding-right: 22px;
   font-weight: 600;
   font-stretch: 100%;
+  cursor: pointer;
 }
 .cts-submit-text {
   font-size: 1.6rem;
@@ -69,4 +70,14 @@
 }
 .cts-already-login-link {
   color: #A15CFF;
+}
+.cts-login {
+  border-style: none;
+  text-decoration: none;
+  font-weight: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  color: inherit;
+  cursor: pointer;
+  padding: 0px;
 }

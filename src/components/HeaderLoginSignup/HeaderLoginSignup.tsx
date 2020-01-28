@@ -1,8 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './HeaderLoginSignup.css';
 
-const HeaderLoginSignup: React.FC = () => (
+interface HeaderLoginSignupProps {
+  handleSignOpen: any;
+  handleLogOpen: any;
+}
+
+const HeaderLoginSignup: React.FC<HeaderLoginSignupProps> = ({ handleSignOpen,handleLogOpen }) => (
   <header className="header-loginsignup">
     <div className="logo-container-loginsignup">
       <a href="#home" className="logo-loginsignup">nevermark</a>
@@ -25,18 +31,23 @@ const HeaderLoginSignup: React.FC = () => (
           </div>
         </li>
         <li className="nav-element-loginsignup">
-          <div className="hls-cont-navel">
-            <a href="#signup" className="link-loginsignup">Sign up</a>
-          </div>
+          <button type="button" className="hls-cont-navel link-loginsignup button-header" onClick={handleSignOpen}>
+            Sign Up
+          </button>
         </li>
         <li className="nav-element-loginsignup last">
-          <div className="hls-cont-navel">
-            <a href="#settings" className="link-loginsignup">Log in</a>
-          </div>
+          <button type="button" className="hls-cont-navel link-loginsignup button-header" onClick={handleLogOpen}>
+            Log In
+          </button>
         </li>
       </ul>
     </nav>
   </header>
 );
+
+HeaderLoginSignup.propTypes = {
+  handleSignOpen : PropTypes.func.isRequired,
+  handleLogOpen : PropTypes.func.isRequired,
+};
 
 export default HeaderLoginSignup;
