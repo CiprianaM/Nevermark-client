@@ -1,0 +1,72 @@
+/* Responsive */
+@media screen and (min-width: 1500px) {
+  .cts-cont {
+      padding-left: 15% !important;
+      padding-right: 15% !important;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .cts-cont {
+      padding-left: 11%;
+      padding-right: 11%;
+  }
+}
+
+/* Containers */
+.cts-cont {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.cts-cont-divider {
+  display: flex;
+  height: 400px;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.title-phrase-cts-cont {
+  width: 50%;
+  align-self: center;
+  padding-right: 10px;
+}
+.gif-cts-cont {
+  flex-direction: row;
+  justify-content: end;
+  align-self: center;
+}
+
+/* Elements */
+.title-cts {
+  font-size: 3.2rem;
+  font-weight: 500;
+  line-height: 5rem;
+}
+.phrase-cts {
+  font-size: 1.6rem;
+  font-weight: 300;
+  line-height: 5rem;
+}
+.cts-submit {
+  background-color: #A15CFF;
+  border-radius: 4px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 24px;
+  padding-right: 22px;
+  font-weight: 600;
+  font-stretch: 100%;
+}
+.cts-submit-text {
+  font-size: 1.6rem;
+  color: white;
+}
+.cts-already-login-cont {
+  padding-top: 15px;
+  font-size: 1.2rem;
+}
+.cts-already-login-link {
+  color: #A15CFF;
+}

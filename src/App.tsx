@@ -1,13 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router,Route } from 'react-router-dom';
+import { BrowserRouter as Router,Route,Switch } from 'react-router-dom';
+import Home from './pages/Home/Home';
 import ResultsLanding from './pages/ResultsLanding/ResultsLanding';
 
 const App: React.FC = () => (
   <Router>
-    <Route path="/search" component={ResultsLanding} />
-    {/* I SHOULD HAVE A SEPARATE FILE WITH ROUTES AND HERE JUST PUT A MAP */}
-    {/* <Route exact path={basicRoutes.map etcc} */}
-    {/* <Route path="/" component={Home}/> */}
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route path="/search" component={ResultsLanding} />
+    </Switch>
   </Router>
 );
 

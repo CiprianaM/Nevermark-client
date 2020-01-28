@@ -1,7 +1,7 @@
 import React,{ useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import Header from '../../components/Header/Header';
+import HeaderLogged from '../../components/HeaderLogged/HeaderLogged';
 import Filters from '../../components/Filters/Filters';
 import './ResultsLanding.css';
 import ResultsContainer from '../../containers/ResultsContainer/ResultsContainer';
@@ -15,7 +15,7 @@ const ResultsLanding: React.FC = () => {
 
   return (
     <>
-      <Header updateQuery={updateQuery} />
+      <HeaderLogged updateQuery={updateQuery} />
       <Filters />
       <ResultsContainer query={query} />
     </>

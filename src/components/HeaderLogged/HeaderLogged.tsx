@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 
 import searchIcon from '../../assets/search-icon.svg';
 
-import './Header.css';
+import './HeaderLogged.css';
 
 interface SearchProps {
   updateQuery: any;
 }
 
-const Header: React.FC<SearchProps> = ({ updateQuery }) => (
-  <header className="header">
-    <div className="logo-container">
-      <a href="#home" className="logo">nevermark</a>
+const HeaderLogged: React.FC<SearchProps> = ({ updateQuery }) => (
+  <header className="header-logged">
+    <div className="logo-container-logged">
+      <a href="#home" className="logo-logged">nevermark</a>
     </div>
     <div className="search-bar-container">
       <div className="search-icon-container">
@@ -30,17 +30,17 @@ const Header: React.FC<SearchProps> = ({ updateQuery }) => (
         />
       </div>
     </div>
-    <nav className="header-nav">
-      <ul className="nav-list">
-        <li className="nav-element"><a href="#settings" className="settings-link">Settings</a></li>
-        <li className="nav-element last"><a href="#settings" className="settings-link">Logout</a></li>
+    <nav className="header-logged-nav">
+      <ul className="nav-list-logged">
+        <li className="nav-element-logged"><a href="#settings" className="settings-link">Settings</a></li>
+        <li className="nav-element-logged last-logged"><a href="#logout" className="logout-link">Logout</a></li>
       </ul>
     </nav>
   </header>
 );
 
-Header.propTypes = {
+HeaderLogged.propTypes = {
   updateQuery : PropTypes.func.isRequired,
 };
 
-export default Header;
+export default HeaderLogged;
