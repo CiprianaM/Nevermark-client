@@ -7,7 +7,7 @@ import './ResultsLanding.css';
 import ResultsContainer from '../../containers/ResultsContainer/ResultsContainer';
 
 const ResultsLanding: React.FC = () => {
-  const [query,setQuery] = useState(useLocation().search.slice(1));
+  const [query,setQuery] = useState(useLocation().search.slice(5));
 
   const updateQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
