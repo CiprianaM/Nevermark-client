@@ -14,7 +14,8 @@ interface IResult {
   totalTimeSpent: any;
   protocol: string;
   domain: string;
-  shortUrl:string
+  shortUrl:string;
+  lastVisitTime:any
 }
 interface IResults{
   results:any;
@@ -51,6 +52,7 @@ const ResultsContainer: React.FC<IResults> = (results) => {
                 protocol={result.protocol}
                 shortUrl={result.shortUrl}
                 domain={result.domain}
+                lastVisitTime={result.lastVisitTime}
               />
             </div>
           </main>
