@@ -24,6 +24,7 @@ const HeaderLogged: React.FC<SearchProps> = ({ updateQuery,query }) => (
       </div>
       <div className="search-input-container">
         <input
+          autoFocus
           className="search-bar"
           spellCheck="false"
           autoComplete="off"
