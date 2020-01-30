@@ -13,6 +13,8 @@ interface IResult {
   totalVisits: number;
   totalTimeSpent: any;
   protocol: string;
+  domain: string;
+  shortUrl:string
 }
 interface IResults{
   results:any;
@@ -21,7 +23,6 @@ interface IResults{
 
 const ResultsContainer: React.FC<IResults> = (results) => {
   const resultMatches: Array<IResult> = [];
-  console.log(`results form resultscontainer: ${JSON.stringify(results.results)}`);
   if (!results.results) {
     return (
       <div>
@@ -30,6 +31,7 @@ const ResultsContainer: React.FC<IResults> = (results) => {
     );
   }
   results.results.forEach((e: any) => {
+    console.log(e);
     resultMatches.push(e);
   });
   // text={result.text}
@@ -47,7 +49,8 @@ const ResultsContainer: React.FC<IResults> = (results) => {
                 totalVisits={result.totalVisits}
                 totalTimeSpent={result.totalTimeSpent}
                 protocol={result.protocol}
-
+                shortUrl={result.shortUrl}
+                domain={result.domain}
               />
             </div>
           </main>

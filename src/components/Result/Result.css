@@ -2,7 +2,10 @@
 .result-container {
   display: flex;
   flex-direction: column;
-  padding-top: 10px;
+  padding: 20px 10px;
+}
+.result-container:hover{
+  background:#eee;
 }
 .title-timespent-container {
   display: flex;
@@ -20,4 +23,13 @@
 }
 .result-url {
   color: #A15CFF;
+}
+
+.favicon{
+  width:16px;
+  height:16px;
+  margin-right:5px;
+  background-color:black;
+  vertical-align: bottom;
+  border-radius: 16px;
 }
