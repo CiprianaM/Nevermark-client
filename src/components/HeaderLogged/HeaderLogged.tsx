@@ -29,7 +29,7 @@ const HeaderLogged: React.FC<SearchProps> = ({ updateQuery,query }) => (
           autoComplete="off"
           name="query"
           placeholder="Search"
-          value={query}
+
           type="text"
           onChange={updateQuery}
         />

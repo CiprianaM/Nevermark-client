@@ -8,6 +8,7 @@ import ResultsContainer from '../../containers/ResultsContainer/ResultsContainer
 import { fetchUserHistory } from '../../ApiClient';
 
 const ResultsLanding: React.FC = () => {
+  console.log(useLocation());
   const [results,setResults] = useState([]);
   const [query,setQuery] = useState(useLocation().search.slice(5));
 
@@ -15,8 +16,6 @@ const ResultsLanding: React.FC = () => {
     fetchUserHistory()
       .then((res:any) => res.json())
       .then((res:any) => {
-        console.log(res);
-        console.log(typeof res.results);
         setResults(res.results);
       });
     // setUpEvents(res);
@@ -26,6 +25,11 @@ const ResultsLanding: React.FC = () => {
 
   const updateQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
+    fetchUserHistory(e.target.value)
+      .then((res:any) => res.json())
+      .then((res:any) => {
+        setResults(res.results);
+      });
   };
 
   return (

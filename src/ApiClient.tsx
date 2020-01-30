@@ -1,9 +1,9 @@
-const fetchUserHistory:Function = async (path:String = '',options:any) => {
+const fetchUserHistory:Function = async (search:String = '',options:any) => {
   const SERVER_URL:string = 'http://192.168.1.136:3000';
-  const DEFAULT_ROUTE = '';
+  const DEFAULT_ROUTE = '/';
   try {
     const res = await fetch(
-      SERVER_URL + DEFAULT_ROUTE,
+      SERVER_URL + DEFAULT_ROUTE + search,
     );
 
     // )
@@ -16,7 +16,7 @@ const fetchUserHistory:Function = async (path:String = '',options:any) => {
   } catch (e) {
     const err = await (e.text ? e.text() : e);
 
-    return { error : err + path };
+    return { error : err + search };
   }
 };
 
