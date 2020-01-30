@@ -8,9 +8,10 @@ import './HeaderLogged.css';
 
 interface SearchProps {
   updateQuery: any;
+  query:string;
 }
 
-const HeaderLogged: React.FC<SearchProps> = ({ updateQuery }) => (
+const HeaderLogged: React.FC<SearchProps> = ({ updateQuery,query }) => (
   <header className="header-logged">
     <div className="logo-container-logged">
       <Link to="/">
@@ -28,6 +29,7 @@ const HeaderLogged: React.FC<SearchProps> = ({ updateQuery }) => (
           autoComplete="off"
           name="query"
           placeholder="Search"
+          value={query}
           type="text"
           onChange={updateQuery}
         />
@@ -44,6 +46,7 @@ const HeaderLogged: React.FC<SearchProps> = ({ updateQuery }) => (
 
 HeaderLogged.propTypes = {
   updateQuery : PropTypes.func.isRequired,
+
 };
 
 export default HeaderLogged;
