@@ -4,40 +4,57 @@ import PropTypes from 'prop-types';
 import './ResultsContainer.css';
 
 import Result from '../../components/Result/Result';
-import fakeData from './fakeData';
-
-interface SearchProps {
-  query: string;
-}
+// import fakeData from './fakeData';
 
 interface IResult {
-  userId: number;
-  domain: string;
+  pageTitle: string;
   url: string;
-  fullUrl: string;
-  fullTitle: string;
-  text: string;
-  createdAt: string;
-  timeSpent: number;
+  log: any;
+  totalVisits: number;
+  totalTimeSpent: any;
+  protocol: string;
+  domain: string;
+  shortUrl:string;
+  lastVisitTime:any;
+  pageText:any;
 }
+interface IResults{
+  results:any;
+}
+// TODO: add number of page etc...
 
-const ResultsContainer: React.FC<SearchProps> = ({ query }) => {
+const ResultsContainer: React.FC<IResults> = (results) => {
   const resultMatches: Array<IResult> = [];
-  fakeData.forEach((e: any) => {
-    if (query && e.url.includes(query)) resultMatches.push(e);
+  if (!results.results) {
+    return (
+      <div>
+       No results...
+      </div>
+    );
+  }
+  results.results.forEach((e: any) => {
+    console.log(e);
+    resultMatches.push(e);
   });
-
+  // text={result.text}
   return (
     <>
       {
         resultMatches.map((result: IResult) => (
-          <main key={result.createdAt} className="results-container">
+          // key={result.createdAt}
+          <main className="results-container">
             <div className="results-elements-container">
               <Result
-                fullurl={result.fullUrl}
-                fulltitle={result.fullTitle}
-                text={result.text}
-                timespent={result.timeSpent}
+                url={result.url}
+                pageTitle={result.pageTitle}
+                log={result.log}
+                totalVisits={result.totalVisits}
+                totalTimeSpent={result.totalTimeSpent}
+                protocol={result.protocol}
+                shortUrl={result.shortUrl}
+                domain={result.domain}
+                lastVisitTime={result.lastVisitTime}
+                pageText={result.pageText}
               />
             </div>
           </main>
@@ -48,7 +65,7 @@ const ResultsContainer: React.FC<SearchProps> = ({ query }) => {
 };
 
 ResultsContainer.propTypes = {
-  query : PropTypes.string.isRequired,
+  results : PropTypes.array.isRequired,
 };
 
 export default ResultsContainer;
