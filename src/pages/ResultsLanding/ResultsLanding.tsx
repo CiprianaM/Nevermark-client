@@ -13,9 +13,16 @@ const ResultsLanding: React.FC = () => {
   const [results,setResults] = useState([]);
   const [query,setQuery] = useState(useLocation().search.slice(5));
   const history = createBrowserHistory();
-
+  // const searchString = ;
+  const pathName = useLocation().pathname;
+  let searchString = '';
+  if (pathName !== '/search') {
+    searchString = pathName.replace('/search/','');
+    console.log(searchString);
+  }
   useEffect(() => {
-    fetchUserHistory()
+    setQuery(searchString);
+    fetchUserHistory(searchString)
       .then((res:any) => res.json())
       .then((res:any) => {
         setResults(res.results);

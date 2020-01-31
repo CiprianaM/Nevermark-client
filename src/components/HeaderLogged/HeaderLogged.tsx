@@ -14,7 +14,7 @@ interface SearchProps {
 const HeaderLogged: React.FC<SearchProps> = ({ updateQuery,query }) => (
   <header className="header-logged">
     <div className="logo-container-logged">
-      <Link to="/">
+      <Link to="/search">
         <span className="logo-logged">nevermark</span>
       </Link>
     </div>
@@ -32,6 +32,7 @@ const HeaderLogged: React.FC<SearchProps> = ({ updateQuery,query }) => (
           placeholder="Search"
 
           type="text"
+          value={query}
           onChange={updateQuery}
         />
       </div>
