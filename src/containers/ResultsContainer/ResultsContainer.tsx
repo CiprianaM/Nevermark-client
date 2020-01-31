@@ -15,7 +15,8 @@ interface IResult {
   protocol: string;
   domain: string;
   shortUrl:string;
-  lastVisitTime:any
+  lastVisitTime:any;
+  pageText:any;
 }
 interface IResults{
   results:any;
@@ -53,6 +54,7 @@ const ResultsContainer: React.FC<IResults> = (results) => {
                 shortUrl={result.shortUrl}
                 domain={result.domain}
                 lastVisitTime={result.lastVisitTime}
+                pageText={result.pageText}
               />
             </div>
           </main>
