@@ -6,11 +6,13 @@ import Filters from '../../components/Filters/Filters';
 import './ResultsLanding.css';
 import ResultsContainer from '../../containers/ResultsContainer/ResultsContainer';
 import { fetchUserHistory } from '../../ApiClient';
+import { createBrowserHistory } from 'history';
 
 const ResultsLanding: React.FC = () => {
   console.log(useLocation());
   const [results,setResults] = useState([]);
   const [query,setQuery] = useState(useLocation().search.slice(5));
+  const history = createBrowserHistory();
 
   useEffect(() => {
     fetchUserHistory()
@@ -24,11 +26,16 @@ const ResultsLanding: React.FC = () => {
   }, []); //eslint-disable-line
 
   const updateQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
-    fetchUserHistory(e.target.value)
+    const searchString = e.target.value;
+    setQuery(searchString);
+    fetchUserHistory(searchString)
       .then((res:any) => res.json())
       .then((res:any) => {
         setResults(res.results);
+        history.push({
+          pathname : `/search/${searchString}`,
+
+        });
       });
   };
 

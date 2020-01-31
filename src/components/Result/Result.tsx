@@ -23,9 +23,10 @@ const Result: React.FC<MatchProps> = ({
   <div className="result-container">
     <div className="title-timespent-container">
       <h3 className="result-title">
-        <img className="favicon" src={`${protocol}://${domain}/favicon.ico`} />
-        <span dangerouslySetInnerHTML={{ __html : pageTitle }} />
-
+        <a href={`${protocol}://${url}`}>
+          <img className="favicon" src={`${protocol}://${domain}/favicon.ico`} />
+          <span dangerouslySetInnerHTML={{ __html : pageTitle }} />
+        </a>
       </h3>
       <span className="timespent">{lastVisitTime}</span>
     </div>
