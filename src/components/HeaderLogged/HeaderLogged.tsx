@@ -32,6 +32,7 @@ const HeaderLogged: React.FC<SearchProps> = ({ updateQuery,query }) => (
           placeholder="Search"
 
           type="text"
+          value={query}
           onChange={updateQuery}
         />
       </div>
