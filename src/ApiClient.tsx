@@ -1,5 +1,5 @@
 const fetchUserHistory:Function = async (search:String = '',options:any) => {
-  const SERVER_URL:string = 'http://192.168.1.136:3000';
+  const SERVER_URL:string = 'http://localhost:3000';
   const DEFAULT_ROUTE = '/';
   try {
     const res = await fetch(
