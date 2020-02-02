@@ -12,3 +12,13 @@
   border-bottom: 1px solid;
   border-bottom-color:rgb(235, 235, 235);
 }
+
+.no-results-elements-container {
+padding:40px;
+font-size:20px;
+line-height:25px;
+}
+.no-results-elements-container h2{
+  font-size:30px;
+  margin-bottom:15px
+}
