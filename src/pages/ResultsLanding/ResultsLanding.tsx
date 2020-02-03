@@ -45,7 +45,7 @@ const ResultsLanding: React.FC = () => {
     fetchUserHistory(query,page)
       .then((res:any) => res.json())
       .then((res:any) => {
-        setResults(res.results.concat(results));
+        setResults(results.concat(res.results));
 
         if (res.nbPages === page) { // we have reached the end
           setPage(-1);
