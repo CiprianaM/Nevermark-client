@@ -28,7 +28,7 @@ const ModalSignUp: React.FC<ModalSignUpProps> = ({ show,handleSignClose }) => {
         <div className="description-modal-signup">
           Create an account to boost the power of your history search and never lose a website again.
         </div>
-        <a href="#googlesignin" className="link-create-googl">
+        <a href={`${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_SERVER_GOOGLE_AUTH_ROUTE}`} className="link-create-googl">
           <div className="google-create-cont">
             <img src={googleIcon} alt="Google Icon" className="google-icon" />
             <span className="signup-with-google">Sign up with Google</span>
