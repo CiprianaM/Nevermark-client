@@ -7,6 +7,7 @@ import Filters from '../../components/Filters/Filters';
 import './ResultsLanding.css';
 import ResultsContainer from '../../containers/ResultsContainer/ResultsContainer';
 import { fetchUserHistory } from '../../ApiClient';
+import ModalSignUp from '../../components/ModalSignUp/ModalSignUp';
 
 const ResultsLanding: React.FC = () => {
   const pathName = useLocation().pathname.replace('/search/','');
@@ -14,10 +15,11 @@ const ResultsLanding: React.FC = () => {
   const [results,setResults] = useState([]);
   const [query,setQuery] = useState(pathName);
   const [page,setPage] = useState(1);
+  const [signmodal,setSignmodal] = useState(0);
   const history = createBrowserHistory();
   // const searchString = ;
 
-  const updateResults = (manualQuery?:any) => {
+  const updateResults = (manualQuery:any = query) => {
     setQuery(manualQuery);
     setPage(1);
 
