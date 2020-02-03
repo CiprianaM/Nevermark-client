@@ -72,9 +72,13 @@ const ResultsLanding: React.FC = () => {
     updateResults(e.target.value);
   };
 
+  const clearQuery = () => {
+    setQuery('');
+  };
+
   return (
     <>
-      <HeaderLogged updateQuery={updateQuery} query={query} />
+      <HeaderLogged clearQuery={clearQuery} updateQuery={updateQuery} query={query} />
       <Filters />
       <ResultsContainer updateResults={updateResultsFromScroll} results={results} />
     </>
