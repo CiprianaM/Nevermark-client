@@ -1,9 +1,9 @@
-const fetchUserHistory:Function = async (search:String = '',options:any) => {
+const fetchUserHistory:Function = async (search:String = '',pageNumber:any) => {
   const SERVER_URL:string = 'http://localhost:3000';
   const DEFAULT_ROUTE = '/';
   try {
     const res = await fetch(
-      SERVER_URL + DEFAULT_ROUTE + search,
+      SERVER_URL + DEFAULT_ROUTE + search + String(pageNumber),
     );
 
     // )
