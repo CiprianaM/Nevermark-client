@@ -9,24 +9,25 @@ import ResultsContainer from '../../containers/ResultsContainer/ResultsContainer
 import { fetchUserHistory } from '../../ApiClient';
 
 const ResultsLanding: React.FC = () => {
+  const pathName = useLocation().pathname.replace('/search/','');
+  console.log('rerendering');
   const [results,setResults] = useState([]);
-  const [query,setQuery] = useState(useLocation().search.slice(5));
+  const [query,setQuery] = useState(pathName);
   const [page,setPage] = useState(1);
   const history = createBrowserHistory();
   // const searchString = ;
-  const pathName = useLocation().pathname;
-  let searchString = '';
-  if (pathName !== '/search') {
-    searchString = pathName.replace('/search/','');
-  }
 
-  const updateResults = () => {
-    setQuery(searchString);
-    fetchUserHistory(searchString,page)
+  const updateResults = (manualQuery?:any) => {
+    setQuery(manualQuery);
+    setPage(1);
+
+    fetchUserHistory(manualQuery,1)
       .then((res:any) => res.json())
       .then((res:any) => {
-        setResults(results.concat(res.results));
-        setPage(page + 1);
+        setResults(res.results);
+        if (res.nbPages > 1) {
+          setPage(2);
+        }
       }).catch((e:any) => {
         const error:any = { error : e };
         setResults(error);
@@ -37,25 +38,45 @@ const ResultsLanding: React.FC = () => {
     updateResults();
   }, []); //eslint-disable-line
 
-  const updateQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const searchString = e.target.value;
-    setQuery(searchString);
-    fetchUserHistory(searchString)
+  const updateResultsFromScroll = () => {
+    if (page === -1) {
+      return;
+    }
+    fetchUserHistory(query,page)
       .then((res:any) => res.json())
       .then((res:any) => {
-        setResults(res.results);
+        setResults(res.results.concat(results));
+
+        if (res.nbPages === page) { // we have reached the end
+          setPage(-1);
+        } else {
+          setPage(Number(page) + 1);
+        }
+
         history.push({
-          pathname : `/search/${searchString}`,
+          pathname : `/search/${query}`,
 
         });
+      }).catch((e:any) => {
+        const error:any = { error : e };
+        setResults(error);
       });
+  };
+
+  const updateQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
+    history.push({
+      pathname : `/search/${e.target.value}`,
+
+    });
+    // setQuery(e.target.value);
+    updateResults(e.target.value);
   };
 
   return (
     <>
       <HeaderLogged updateQuery={updateQuery} query={query} />
       <Filters />
-      <ResultsContainer updateResults={updateResults} results={results} />
+      <ResultsContainer updateResults={updateResultsFromScroll} results={results} />
     </>
   );
 };
