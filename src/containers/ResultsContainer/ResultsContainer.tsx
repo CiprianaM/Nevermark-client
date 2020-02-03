@@ -17,22 +17,39 @@ interface IResult {
   shortUrl:string;
   lastVisitTime:any;
   pageText:any;
+
 }
 interface IResults{
-  results:any;
+  results?:any;
+  error?:any;
 }
 // TODO: add number of page etc...
 
-const ResultsContainer: React.FC<IResults> = (results) => {
+const ResultsContainer: React.FC<IResults> = ({ results,error }) => {
   const resultMatches: Array<IResult> = [];
-  if (!results.results) {
+  if (!results || error) {
     return (
-      <div>
-       No results...
-      </div>
+      <main className="results-container">
+        <div className="no-results-elements-container">
+          <h2>Error</h2>
+       Please retry in a minute.
+          <br />
+          <div className="quiet">Or if you're a Dev, check the backend  log and repair that thing NOW !!</div>
+        </div>
+      </main>
     );
   }
-  results.results.forEach((e: any) => {
+
+  if (!results.length) {
+    return (
+      <main className="results-container">
+        <div className="no-results-elements-container">
+       No results for now...
+        </div>
+      </main>
+    );
+  }
+  results.forEach((e: any) => {
     console.log(e);
     resultMatches.push(e);
   });
@@ -65,7 +82,7 @@ const ResultsContainer: React.FC<IResults> = (results) => {
 };
 
 ResultsContainer.propTypes = {
-  results : PropTypes.array.isRequired,
+  results : PropTypes.any,
 };
 
 export default ResultsContainer;
