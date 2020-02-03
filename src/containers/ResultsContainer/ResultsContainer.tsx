@@ -42,12 +42,10 @@ const ResultsContainer: React.FC<IResults> = ({ results,updateResults,error }) =
     );
   }
 
-  if (!results.length) {
+  if (results.error) {
     return (
       <main className="results-container">
-        <div className="no-results-elements-container">
-       No results for now...
-        </div>
+        <div className="no-results-elements-container" />
       </main>
     );
   }
@@ -60,7 +58,7 @@ const ResultsContainer: React.FC<IResults> = ({ results,updateResults,error }) =
       dataLength={results.length}
       next={updateResults}
       hasMore
-      loader={<h4>Loading...</h4>}
+      loader={<div className="loading"><h4>Loading...</h4></div>}
     >
       {
         resultMatches.map((result: IResult) => (
