@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 import './ResultsContainer.css';
 
@@ -22,10 +23,11 @@ interface IResult {
 interface IResults{
   results?:any;
   error?:any;
+  updateResults: any;
 }
 // TODO: add number of page etc...
 
-const ResultsContainer: React.FC<IResults> = ({ results,error }) => {
+const ResultsContainer: React.FC<IResults> = ({ results,updateResults,error }) => {
   const resultMatches: Array<IResult> = [];
   if (!results || error) {
     return (
@@ -50,12 +52,16 @@ const ResultsContainer: React.FC<IResults> = ({ results,error }) => {
     );
   }
   results.forEach((e: any) => {
-    console.log(e);
     resultMatches.push(e);
   });
   // text={result.text}
   return (
-    <>
+    <InfiniteScroll
+      dataLength={results.length}
+      next={updateResults}
+      hasMore
+      loader={<h4>Loading...</h4>}
+    >
       {
         resultMatches.map((result: IResult) => (
           // key={result.createdAt}
@@ -77,12 +83,13 @@ const ResultsContainer: React.FC<IResults> = ({ results,error }) => {
           </main>
         ))
       }
-    </>
+    </InfiniteScroll>
   );
 };
 
 ResultsContainer.propTypes = {
   results : PropTypes.any,
+  updateResults : PropTypes.func.isRequired,
 };
 
 export default ResultsContainer;

@@ -11,6 +11,7 @@ import { fetchUserHistory } from '../../ApiClient';
 const ResultsLanding: React.FC = () => {
   const [results,setResults] = useState([]);
   const [query,setQuery] = useState(useLocation().search.slice(5));
+  const [page,setPage] = useState(1);
   const history = createBrowserHistory();
   // const searchString = ;
   const pathName = useLocation().pathname;
@@ -18,17 +19,22 @@ const ResultsLanding: React.FC = () => {
   if (pathName !== '/search') {
     searchString = pathName.replace('/search/','');
   }
-  useEffect(() => {
+
+  const updateResults = () => {
     setQuery(searchString);
-    fetchUserHistory(searchString)
+    fetchUserHistory(searchString,page)
       .then((res:any) => res.json())
       .then((res:any) => {
-        setResults(res.results);
+        setResults(results.concat(res.results));
+        setPage(page + 1);
       }).catch((e:any) => {
         const error:any = { error : e };
         setResults(error);
       });
+  };
 
+  useEffect(() => {
+    updateResults();
   }, []); //eslint-disable-line
 
   const updateQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,7 +55,7 @@ const ResultsLanding: React.FC = () => {
     <>
       <HeaderLogged updateQuery={updateQuery} query={query} />
       <Filters />
-      <ResultsContainer results={results} />
+      <ResultsContainer updateResults={updateResults} results={results} />
     </>
   );
 };
