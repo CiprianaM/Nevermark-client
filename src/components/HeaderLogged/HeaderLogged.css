@@ -62,6 +62,10 @@
   height: 22px;
   width: 22px;
 }
+.clear-icon {
+  height: 15px;
+  width: 15px;
+}
 .search-bar {
   border: 0px;
   font-size: 1.4rem;
@@ -78,7 +82,7 @@
     font-family: inherit;
     color: inherit;
     cursor: pointer;
-    padding-right: 10px;
+    padding-right: 15px;
 }
 .not {
   visibility: hidden;

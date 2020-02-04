@@ -66,7 +66,6 @@ const ResultsLanding: React.FC = () => {
   const updateQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
     history.push({
       pathname : `/search/${e.target.value}`,
-
     });
     // setQuery(e.target.value);
     updateResults(e.target.value);
@@ -74,6 +73,11 @@ const ResultsLanding: React.FC = () => {
 
   const clearQuery = () => {
     setQuery('');
+    history.push({
+      pathname : '/search/',
+
+    });
+    updateResults('');
   };
 
   return (
