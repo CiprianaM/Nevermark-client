@@ -13,6 +13,7 @@ import BackToTop from '../../components/BackToTop/BackToTop';
 const ResultsLanding: React.FC = () => {
   const pathName = useLocation().pathname.replace('/search','').replace('/','');
   const [numResults,setNumResults] = useState(0);
+  const [took,setTook] = useState(0);
   const [results,setResults] = useState([]);
   const [query,setQuery] = useState(pathName);
   const [page,setPage] = useState(1);
@@ -49,6 +50,7 @@ const ResultsLanding: React.FC = () => {
       .then((res:any) => {
         setResults(res.results);
         setNumResults(res.nbHits);
+        setTook(res.took);
         if (res.nbPages > 1) {
           setPage(2);
         }
@@ -121,7 +123,7 @@ const ResultsLanding: React.FC = () => {
     <>
       <HeaderLogged clearQuery={clearQuery} updateQuery={updateQuery} query={query} />
       <Filters />
-      <ResultsContainer numResults={numResults} updateResults={updateResultsFromScroll} results={results} />
+      <ResultsContainer numResults={numResults} updateResults={updateResultsFromScroll} results={results} took={took} />
       <ModalSignUp show={signmodal} handleSignClose={hideSignModal} />
       <BackToTop backToTop={backToTop} hasScrolled={hasScrolled} />
     </>
