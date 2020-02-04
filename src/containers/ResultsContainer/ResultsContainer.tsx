@@ -24,10 +24,13 @@ interface IResults{
   results?:any;
   error?:any;
   updateResults: any;
+  numResults: number;
 }
 // TODO: add number of page etc...
 
-const ResultsContainer: React.FC<IResults> = ({ results,updateResults,error }) => {
+const ResultsContainer: React.FC<IResults> = ({
+  results,updateResults,numResults,error,
+}) => {
   const resultMatches: Array<IResult> = [];
   if (!results || error) {
     return (
@@ -61,10 +64,13 @@ const ResultsContainer: React.FC<IResults> = ({ results,updateResults,error }) =
         hasMore
         loader={<div className="loading"><h4>Loading...</h4></div>}
       >
-        {
-          resultMatches.map((result: IResult) => (
-          // key={result.createdAt}
-            <main className="results-container">
+        <main className="results-container">
+          <div className="num-results">
+            <h3 className="number-of-results">{`About ${numResults} results`}</h3>
+          </div>
+          {
+            resultMatches.map((result: IResult) => (
+              // key={result.createdAt}
               <div className="results-elements-container">
                 <Result
                   url={result.url}
@@ -79,9 +85,9 @@ const ResultsContainer: React.FC<IResults> = ({ results,updateResults,error }) =
                   pageText={result.pageText}
                 />
               </div>
-            </main>
-          ))
-        }
+            ))
+          }
+        </main>
       </InfiniteScroll>
     </>
   );
@@ -90,6 +96,7 @@ const ResultsContainer: React.FC<IResults> = ({ results,updateResults,error }) =
 ResultsContainer.propTypes = {
   results : PropTypes.any,
   updateResults : PropTypes.func.isRequired,
+  numResults : PropTypes.number.isRequired,
 };
 
 export default ResultsContainer;
