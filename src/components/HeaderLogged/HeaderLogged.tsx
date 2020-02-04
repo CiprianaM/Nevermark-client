@@ -3,15 +3,17 @@ import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 import searchIcon from '../../assets/search-icon.svg';
+import clearIcon from '../../assets/exit-icon.svg';
 
 import './HeaderLogged.css';
 
 interface SearchProps {
   updateQuery: any;
+  clearQuery: any;
   query:string;
 }
 
-const HeaderLogged: React.FC<SearchProps> = ({ updateQuery,query }) => (
+const HeaderLogged: React.FC<SearchProps> = ({ updateQuery,clearQuery,query }) => (
   <header className="header-logged">
     <div className="logo-container-logged">
       <Link to="/search">
@@ -30,11 +32,15 @@ const HeaderLogged: React.FC<SearchProps> = ({ updateQuery,query }) => (
           autoComplete="off"
           name="query"
           placeholder="Search"
-
           type="text"
           value={query}
           onChange={updateQuery}
         />
+        <button className="x-button" type="submit" onClick={clearQuery}>
+          <span role="img" aria-label="clear search" className={query === undefined || (query && query.length >= 1) ? 'x see' : 'x not'}>
+            <img src={clearIcon} alt="Clear Input" className="clear-icon" />
+          </span>
+        </button>
       </div>
     </div>
     <nav className="header-logged-nav">
@@ -48,7 +54,7 @@ const HeaderLogged: React.FC<SearchProps> = ({ updateQuery,query }) => (
 
 HeaderLogged.propTypes = {
   updateQuery : PropTypes.func.isRequired,
-
+  clearQuery : PropTypes.func.isRequired,
 };
 
 export default HeaderLogged;

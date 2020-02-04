@@ -24,10 +24,13 @@ interface IResults{
   results?:any;
   error?:any;
   updateResults: any;
+  numResults: number;
 }
 // TODO: add number of page etc...
 
-const ResultsContainer: React.FC<IResults> = ({ results,updateResults,error }) => {
+const ResultsContainer: React.FC<IResults> = ({
+  results,updateResults,numResults,error,
+}) => {
   const resultMatches: Array<IResult> = [];
   if (!results || error) {
     return (
@@ -54,40 +57,46 @@ const ResultsContainer: React.FC<IResults> = ({ results,updateResults,error }) =
   });
   // text={result.text}
   return (
-    <InfiniteScroll
-      dataLength={results.length}
-      next={updateResults}
-      hasMore
-      loader={<div className="loading"><h4>Loading...</h4></div>}
-    >
-      {
-        resultMatches.map((result: IResult) => (
-          // key={result.createdAt}
-          <main className="results-container">
-            <div className="results-elements-container">
-              <Result
-                url={result.url}
-                pageTitle={result.pageTitle}
-                log={result.log}
-                totalVisits={result.totalVisits}
-                totalTimeSpent={result.totalTimeSpent}
-                protocol={result.protocol}
-                shortUrl={result.shortUrl}
-                domain={result.domain}
-                lastVisitTime={result.lastVisitTime}
-                pageText={result.pageText}
-              />
-            </div>
-          </main>
-        ))
-      }
-    </InfiniteScroll>
+    <>
+      <InfiniteScroll
+        dataLength={results.length}
+        next={updateResults}
+        hasMore
+        loader={<div className="loading"><h4>Loading...</h4></div>}
+      >
+        <main className="results-container">
+          <div className="num-results">
+            <h3 className="number-of-results">{`About ${numResults} results`}</h3>
+          </div>
+          {
+            resultMatches.map((result: IResult) => (
+              // key={result.createdAt}
+              <div className="results-elements-container">
+                <Result
+                  url={result.url}
+                  pageTitle={result.pageTitle}
+                  log={result.log}
+                  totalVisits={result.totalVisits}
+                  totalTimeSpent={result.totalTimeSpent}
+                  protocol={result.protocol}
+                  shortUrl={result.shortUrl}
+                  domain={result.domain}
+                  lastVisitTime={result.lastVisitTime}
+                  pageText={result.pageText}
+                />
+              </div>
+            ))
+          }
+        </main>
+      </InfiniteScroll>
+    </>
   );
 };
 
 ResultsContainer.propTypes = {
   results : PropTypes.any,
   updateResults : PropTypes.func.isRequired,
+  numResults : PropTypes.number.isRequired,
 };
 
 export default ResultsContainer;

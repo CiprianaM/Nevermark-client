@@ -8,14 +8,16 @@ import './ResultsLanding.css';
 import ResultsContainer from '../../containers/ResultsContainer/ResultsContainer';
 import { fetchUserHistory,fetchUser } from '../../ApiClient';
 import ModalSignUp from '../../components/ModalSignUp/ModalSignUp';
+import BackToTop from '../../components/BackToTop/BackToTop';
 
 const ResultsLanding: React.FC = () => {
   const pathName = useLocation().pathname.replace('/search','').replace('/','');
-  console.log('rerendering');
+  const [numResults,setNumResults] = useState(0);
   const [results,setResults] = useState([]);
   const [query,setQuery] = useState(pathName);
   const [page,setPage] = useState(1);
   const [signmodal,setSignmodal] = useState(0);
+  const [hasScrolled,setHasScrolled] = useState(false);
   const history = createBrowserHistory();
   const showSignModal = () => {
     setSignmodal(1);
@@ -46,6 +48,7 @@ const ResultsLanding: React.FC = () => {
       .then((res:any) => res.json())
       .then((res:any) => {
         setResults(res.results);
+        setNumResults(res.nbHits);
         if (res.nbPages > 1) {
           setPage(2);
         }
@@ -55,9 +58,21 @@ const ResultsLanding: React.FC = () => {
       });
   };
 
-  useEffect(() => {
-    getUser();
+  const handleScroll = (e: any) => {
+    if (e.srcElement.defaultView.visualViewport.pageTop > 0) {
+      setHasScrolled(true);
+    } else {
+      setHasScrolled(false);
+    }
+  };
 
+  const backToTop = () => {
+    window.scroll(0,0);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll',handleScroll);
+    getUser();
   }, []); //eslint-disable-line
 
   const updateResultsFromScroll = () => {
@@ -88,18 +103,27 @@ const ResultsLanding: React.FC = () => {
   const updateQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
     history.push({
       pathname : `/search/${e.target.value}`,
-
     });
     // setQuery(e.target.value);
     updateResults(e.target.value);
   };
 
+  const clearQuery = () => {
+    setQuery('');
+    history.push({
+      pathname : '/search/',
+
+    });
+    updateResults('');
+  };
+
   return (
     <>
-      <HeaderLogged updateQuery={updateQuery} query={query} />
+      <HeaderLogged clearQuery={clearQuery} updateQuery={updateQuery} query={query} />
       <Filters />
-      <ResultsContainer updateResults={updateResultsFromScroll} results={results} />
+      <ResultsContainer numResults={numResults} updateResults={updateResultsFromScroll} results={results} />
       <ModalSignUp show={signmodal} handleSignClose={hideSignModal} />
+      <BackToTop backToTop={backToTop} hasScrolled={hasScrolled} />
     </>
   );
 };
