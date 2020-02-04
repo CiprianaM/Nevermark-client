@@ -62,7 +62,7 @@ const ResultsContainer: React.FC<IResults> = ({
         dataLength={results.length}
         next={updateResults}
         hasMore
-        loader={<div className="loading"><h4>Loading...</h4></div>}
+        loader={<div className="loading" />}
       >
         <main className="results-container">
           <div className="num-results">

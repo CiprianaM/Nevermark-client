@@ -18,22 +18,28 @@ interface MatchProps {
 }
 // {`${Math.round(totalTimeSpent / 1000)} minutes.`}
 const Result: React.FC<MatchProps> = ({
-  url,pageTitle,protocol,shortUrl,domain,lastVisitTime,pageText,// protocol,totalVisits,
-}) => (
-  <div className="result-container">
-    <div className="title-timespent-container">
-      <h3 className="result-title">
-        <a href={`${protocol}://${url}`}>
-          <img className="favicon" src={`${protocol}://${domain}/favicon.ico`} />
-          <span dangerouslySetInnerHTML={{ __html : pageTitle }} />
-        </a>
-      </h3>
-      <span className="timespent">{lastVisitTime}</span>
+  url,pageTitle,protocol,shortUrl,domain,lastVisitTime,pageText,totalVisits,
+}) => {
+  const title = pageTitle.length > 80 ? `${pageTitle.slice(0,89)}...` : pageTitle;
+  return (
+    <div className="result-container">
+      <div className="title-timespent-container">
+        <h3 className="result-title">
+          <a href={`${protocol}://${url}`}>
+            <img className="favicon" src={`${protocol}://${domain}/favicon.ico`} />
+            <span dangerouslySetInnerHTML={{ __html : title }} />
+          </a>
+        </h3>
+        <span className="timespent">{lastVisitTime}</span>
+      </div>
+      <div className="result-text" dangerouslySetInnerHTML={{ __html : pageText }} />
+      <div className="last-row">
+        <a href={`${protocol}://${url}`} className="result-url" target="_blank" rel="noopener noreferrer">{shortUrl}</a>
+        <h4 className="num-visits timespent">{`${totalVisits}${totalVisits === 1 ? ' visit' : ' visits'}`}</h4>
+      </div>
     </div>
-    <div className="result-text" dangerouslySetInnerHTML={{ __html : pageText }} />
-    <a href={`${protocol}://${url}`} className="result-url" target="_blank" rel="noopener noreferrer">{shortUrl}</a>
-  </div>
-);
+  );
+};
 
 Result.propTypes = {
   url : PropTypes.string.isRequired,
