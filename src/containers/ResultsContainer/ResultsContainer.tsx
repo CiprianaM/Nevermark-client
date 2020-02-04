@@ -54,34 +54,36 @@ const ResultsContainer: React.FC<IResults> = ({ results,updateResults,error }) =
   });
   // text={result.text}
   return (
-    <InfiniteScroll
-      dataLength={results.length}
-      next={updateResults}
-      hasMore
-      loader={<div className="loading"><h4>Loading...</h4></div>}
-    >
-      {
-        resultMatches.map((result: IResult) => (
+    <>
+      <InfiniteScroll
+        dataLength={results.length}
+        next={updateResults}
+        hasMore
+        loader={<div className="loading"><h4>Loading...</h4></div>}
+      >
+        {
+          resultMatches.map((result: IResult) => (
           // key={result.createdAt}
-          <main className="results-container">
-            <div className="results-elements-container">
-              <Result
-                url={result.url}
-                pageTitle={result.pageTitle}
-                log={result.log}
-                totalVisits={result.totalVisits}
-                totalTimeSpent={result.totalTimeSpent}
-                protocol={result.protocol}
-                shortUrl={result.shortUrl}
-                domain={result.domain}
-                lastVisitTime={result.lastVisitTime}
-                pageText={result.pageText}
-              />
-            </div>
-          </main>
-        ))
-      }
-    </InfiniteScroll>
+            <main className="results-container">
+              <div className="results-elements-container">
+                <Result
+                  url={result.url}
+                  pageTitle={result.pageTitle}
+                  log={result.log}
+                  totalVisits={result.totalVisits}
+                  totalTimeSpent={result.totalTimeSpent}
+                  protocol={result.protocol}
+                  shortUrl={result.shortUrl}
+                  domain={result.domain}
+                  lastVisitTime={result.lastVisitTime}
+                  pageText={result.pageText}
+                />
+              </div>
+            </main>
+          ))
+        }
+      </InfiniteScroll>
+    </>
   );
 };
 

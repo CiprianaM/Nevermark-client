@@ -8,14 +8,15 @@ import './ResultsLanding.css';
 import ResultsContainer from '../../containers/ResultsContainer/ResultsContainer';
 import { fetchUserHistory,fetchUser } from '../../ApiClient';
 import ModalSignUp from '../../components/ModalSignUp/ModalSignUp';
+import BackToTop from '../../components/BackToTop/BackToTop';
 
 const ResultsLanding: React.FC = () => {
   const pathName = useLocation().pathname.replace('/search','').replace('/','');
-  console.log('rerendering');
   const [results,setResults] = useState([]);
   const [query,setQuery] = useState(pathName);
   const [page,setPage] = useState(1);
   const [signmodal,setSignmodal] = useState(0);
+  const [hasScrolled,setHasScrolled] = useState(false);
   const history = createBrowserHistory();
   const showSignModal = () => {
     setSignmodal(1);
@@ -55,9 +56,21 @@ const ResultsLanding: React.FC = () => {
       });
   };
 
-  useEffect(() => {
-    getUser();
+  const handleScroll = (e: any) => {
+    if (e.srcElement.defaultView.visualViewport.pageTop > 0) {
+      setHasScrolled(true);
+    } else {
+      setHasScrolled(false);
+    }
+  };
 
+  const backToTop = () => {
+    window.scroll(0,0);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll',handleScroll);
+    getUser();
   }, []); //eslint-disable-line
 
   const updateResultsFromScroll = () => {
@@ -108,6 +121,7 @@ const ResultsLanding: React.FC = () => {
       <Filters />
       <ResultsContainer updateResults={updateResultsFromScroll} results={results} />
       <ModalSignUp show={signmodal} handleSignClose={hideSignModal} />
+      <BackToTop backToTop={backToTop} hasScrolled={hasScrolled} />
     </>
   );
 };
