@@ -16,6 +16,7 @@
 }
 .search-bar-container {
   width: 800px;
+  margin:0 auto;
   padding-left: 10px;
   border-radius: 5px;
   height: 48px;
@@ -92,4 +93,9 @@
 }
 .see {
   visibility: visible;
+}
+
+.search-bar-wrapper{
+  position: absolute;
+  width: 100%;
 }
