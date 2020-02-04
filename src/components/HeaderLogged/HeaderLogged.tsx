@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import searchIcon from '../../assets/search-icon.svg';
 import clearIcon from '../../assets/exit-icon.svg';
+import UserMenu from '../UserMenu/UserMenu';
 
 import './HeaderLogged.css';
 
@@ -11,9 +12,12 @@ interface SearchProps {
   updateQuery: any;
   clearQuery: any;
   query:string;
+  userAvatar:any;
 }
 
-const HeaderLogged: React.FC<SearchProps> = ({ updateQuery,clearQuery,query }) => (
+const HeaderLogged: React.FC<SearchProps> = ({
+  updateQuery,clearQuery,query,userAvatar,
+}) => (
   <header className="header-logged">
     <div className="logo-container-logged">
       <Link to="/search">
@@ -45,8 +49,11 @@ const HeaderLogged: React.FC<SearchProps> = ({ updateQuery,clearQuery,query }) =
     </div>
     <nav className="header-logged-nav">
       <ul className="nav-list-logged">
-        <li className="nav-element-logged"><a href="#settings" className="settings-link">Settings</a></li>
-        <li className="nav-element-logged last-logged"><a href={`${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_SERVER_LOGOUT_AUTH_ROUTE}`} className="logout-link">Logout</a></li>
+        <li className="nav-element-logged">
+
+          <UserMenu userAvatar={userAvatar} />
+
+        </li>
       </ul>
     </nav>
   </header>
@@ -55,6 +62,7 @@ const HeaderLogged: React.FC<SearchProps> = ({ updateQuery,clearQuery,query }) =
 HeaderLogged.propTypes = {
   updateQuery : PropTypes.func.isRequired,
   clearQuery : PropTypes.func.isRequired,
+  userAvatar : PropTypes.any,
 };
 
 export default HeaderLogged;
