@@ -27,7 +27,7 @@ const ModalLogIn: React.FC<ModalLogInProps> = ({ show,handleLogClose }) => {
         <div className="description-modal-login">
           Log in to unleash the power of nevermark.
         </div>
-        <a href="#googlesignin" className="link-create-googl">
+        <a href={`${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_SERVER_GOOGLE_AUTH_ROUTE}`} className="link-create-googl">
           <div className="google-create-cont">
             <img src={googleIcon} alt="Google Icon" className="google-icon" />
             <span className="login-with-google">Log in with Google</span>

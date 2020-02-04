@@ -6,18 +6,39 @@ import HeaderLogged from '../../components/HeaderLogged/HeaderLogged';
 import Filters from '../../components/Filters/Filters';
 import './ResultsLanding.css';
 import ResultsContainer from '../../containers/ResultsContainer/ResultsContainer';
-import { fetchUserHistory } from '../../ApiClient';
+import { fetchUserHistory,fetchUser } from '../../ApiClient';
+import ModalSignUp from '../../components/ModalSignUp/ModalSignUp';
 
 const ResultsLanding: React.FC = () => {
-  const pathName = useLocation().pathname.replace('/search/','');
+  const pathName = useLocation().pathname.replace('/search','').replace('/','');
   console.log('rerendering');
   const [results,setResults] = useState([]);
   const [query,setQuery] = useState(pathName);
   const [page,setPage] = useState(1);
+  const [signmodal,setSignmodal] = useState(0);
   const history = createBrowserHistory();
-  // const searchString = ;
+  const showSignModal = () => {
+    setSignmodal(1);
+  };
+  const hideSignModal = () => {
+    setSignmodal(0);
+  };
 
-  const updateResults = (manualQuery?:any) => {
+  const getUser = () => {
+    fetchUser()
+      .then((res:any) => {
+        if (res.error) {
+          showSignModal();
+        }
+        return res;
+      })
+      .then((res:any) => (res.error ? res : res.json()))
+      .then((res:any) => {
+        if (!res.error) { updateResults(); }
+      });
+  };
+
+  const updateResults = (manualQuery:any = query) => {
     setQuery(manualQuery);
     setPage(1);
 
@@ -35,7 +56,8 @@ const ResultsLanding: React.FC = () => {
   };
 
   useEffect(() => {
-    updateResults();
+    getUser();
+
   }, []); //eslint-disable-line
 
   const updateResultsFromScroll = () => {
@@ -77,6 +99,7 @@ const ResultsLanding: React.FC = () => {
       <HeaderLogged updateQuery={updateQuery} query={query} />
       <Filters />
       <ResultsContainer updateResults={updateResultsFromScroll} results={results} />
+      <ModalSignUp show={signmodal} handleSignClose={hideSignModal} />
     </>
   );
 };
