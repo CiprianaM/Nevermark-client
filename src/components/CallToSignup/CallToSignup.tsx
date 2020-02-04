@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './CallToSignup.css';
+import searchGif from '../../assets/search.gif';
 
 interface CallToSignupProps {
   handleSignOpen: any;
@@ -27,7 +28,7 @@ const CallToSignup: React.FC<CallToSignupProps> = ({ handleSignOpen,handleLogOpe
           </div>
         </div>
         <div className="gif-cts-cont">
-          <iframe title="nevermark" src="https://media.giphy.com/media/l1rW1J0NW2wKjPpmjV/giphy.gif" width="480" height="318" frameBorder="0" className="giphy-embed" allowFullScreen />
+          <img src={searchGif} width="480" height="338" alt="Nevermark gif" />
         </div>
       </div>
     </div>
