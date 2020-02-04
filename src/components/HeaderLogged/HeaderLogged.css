@@ -76,6 +76,9 @@
 }
 .x-button {
     border-style: none;
+    /* Windows/Linux fix */
+    background:transparent;
+    border:none;
     text-decoration: none;
     font-weight: inherit;
     font-size: 100%;
