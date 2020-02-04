@@ -46,7 +46,7 @@ const HeaderLogged: React.FC<SearchProps> = ({ updateQuery,clearQuery,query }) =
     <nav className="header-logged-nav">
       <ul className="nav-list-logged">
         <li className="nav-element-logged"><a href="#settings" className="settings-link">Settings</a></li>
-        <li className="nav-element-logged last-logged"><a href="#logout" className="logout-link">Logout</a></li>
+        <li className="nav-element-logged last-logged"><a href={`${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_SERVER_LOGOUT_AUTH_ROUTE}`} className="logout-link">Logout</a></li>
       </ul>
     </nav>
   </header>
