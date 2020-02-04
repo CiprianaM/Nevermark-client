@@ -25,11 +25,12 @@ interface IResults{
   error?:any;
   updateResults: any;
   numResults: number;
+  took: number;
 }
 // TODO: add number of page etc...
 
 const ResultsContainer: React.FC<IResults> = ({
-  results,updateResults,numResults,error,
+  results,updateResults,numResults,took,error,
 }) => {
   const resultMatches: Array<IResult> = [];
   if (!results || error) {
@@ -66,7 +67,7 @@ const ResultsContainer: React.FC<IResults> = ({
       >
         <main className="results-container">
           <div className="num-results">
-            <h3 className="number-of-results">{`About ${numResults} results`}</h3>
+            <h3 className="number-of-results">{`About ${numResults} results retrieved in ${took} miliseconds`}</h3>
           </div>
           {
             resultMatches.map((result: IResult) => (
@@ -97,6 +98,7 @@ ResultsContainer.propTypes = {
   results : PropTypes.any,
   updateResults : PropTypes.func.isRequired,
   numResults : PropTypes.number.isRequired,
+  took : PropTypes.number.isRequired,
 };
 
 export default ResultsContainer;
