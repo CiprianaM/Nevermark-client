@@ -3,7 +3,7 @@ const FETCH_OPTIONS:{} = {
   cache : 'no-cache',
   credentials : 'include',
 };
-const SERVER_URL:string = 'http://localhost:3000';
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const fetchUser:Function = async () => {
   try {
