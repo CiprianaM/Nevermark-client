@@ -47,13 +47,15 @@
 .search-input-container{
   width:100%
 }
+.logo-container-logged {
+  padding-left: 24px;
+}
 /* Elements */
 .logo-logged {
   font-size: 2.4rem;
-  font-style: italic;
   padding-right: 24px;
-  padding-left: 24px;
 }
+
 .nav-element-logged {
   margin: 10px;
   font-size: 1.4rem;
@@ -62,6 +64,11 @@
 .search-icon {
   height: 22px;
   width: 22px;
+}
+.logo-icon {
+  height: 22px;
+  width: 22px;
+  align-self: center;
 }
 .clear-icon {
   height: 15px;

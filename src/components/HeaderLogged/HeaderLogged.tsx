@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import searchIcon from '../../assets/search-icon.svg';
 import clearIcon from '../../assets/exit-icon.svg';
+import logo from '../../assets/logo.svg';
 import UserMenu from '../UserMenu/UserMenu';
 
 import './HeaderLogged.css';
@@ -47,11 +48,12 @@ const HeaderLogged: React.FC<SearchProps> = ({
         </div>
       </div>
     ) : <></>}
-    <div className="logo-container-logged">
-      <Link to="/search">
+    <Link to="/search">
+      <div className="logo-container-logged">
+        <img src={logo} alt="nevermark logo" className="logo-icon" />
         <span className="logo-logged">nevermark</span>
-      </Link>
-    </div>
+      </div>
+    </Link>
 
     <nav className="header-logged-nav">
       <ul className="nav-list-logged">

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 
+import logo from '../../assets/logo.svg';
+
 import './HeaderLoginSignup.css';
 
 interface HeaderLoginSignupProps {
@@ -13,7 +15,8 @@ interface HeaderLoginSignupProps {
 const HeaderLoginSignup: React.FC<HeaderLoginSignupProps> = ({ handleSignOpen,handleLogOpen }) => (
   <header className="header-loginsignup">
     <Link to="/">
-      <div className="logo-congainer-loginsignup">
+      <div className="logo-container-loginsignup">
+        <img src={logo} alt="nevermark logo" className="logo-icon" />
         <span className="logo-loginsignup">nevermark</span>
       </div>
     </Link>
