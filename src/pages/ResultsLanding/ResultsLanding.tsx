@@ -6,12 +6,13 @@ import HeaderLogged from '../../components/HeaderLogged/HeaderLogged';
 import Filters from '../../components/Filters/Filters';
 import './ResultsLanding.css';
 import ResultsContainer from '../../containers/ResultsContainer/ResultsContainer';
-import { fetchUserHistory,fetchUser } from '../../ApiClient';
+import { fetchUserHistory,fetchUser, fetchUserDomainHistory } from '../../ApiClient';
 import ModalSignUp from '../../components/ModalSignUp/ModalSignUp';
 import BackToTop from '../../components/BackToTop/BackToTop';
 
 const ResultsLanding: React.FC = () => {
   const pathName = useLocation().pathname.replace('/search','').replace('/','');
+  const pathNameDomain = useLocation().pathname.replace('/searchdomain','').replace('/','');
   const [numResults,setNumResults] = useState(0);
   const [took,setTook] = useState(0);
   const [results,setResults] = useState([]);
@@ -65,7 +66,14 @@ const ResultsLanding: React.FC = () => {
         setResults(error);
       });
   };
-
+  const deleteDomain = (domain:any) => {
+    fetchUserDomainHistory(domain)
+      .then((res:any) => res.json())
+      .then((res:any) => {
+        console.log(query, 'query');
+        updateResults();
+      })
+  }
   const handleScroll = (e: any) => {
     if (e.srcElement.defaultView.visualViewport.pageTop > 0) {
       setHasScrolled(true);
@@ -129,7 +137,7 @@ const ResultsLanding: React.FC = () => {
     <>
       <HeaderLogged clearQuery={clearQuery} updateQuery={updateQuery} query={query} userAvatar={userAvatar} />
       <Filters />
-      <ResultsContainer numResults={numResults} updateResults={updateResultsFromScroll} results={results} took={took} />
+      <ResultsContainer deleteDomain={deleteDomain} numResults={numResults} updateResults={updateResultsFromScroll} results={results} took={took} />
       <ModalSignUp show={signmodal} handleSignClose={hideSignModal} />
       <BackToTop backToTop={backToTop} hasScrolled={hasScrolled} />
     </>

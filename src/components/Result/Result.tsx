@@ -16,11 +16,16 @@ interface MatchProps {
   shortUrl:string;
   domain:string;
   pageText:string;
+  deleteDomain: any;
 }
 // {`${Math.round(totalTimeSpent / 1000)} minutes.`}
 const Result: React.FC<MatchProps> = ({
-  url,pageTitle,protocol,shortUrl,domain,lastVisitTime,pageText,totalVisits,
+  url,pageTitle,protocol,shortUrl,domain,lastVisitTime,pageText,totalVisits, deleteDomain
 }) => {
+  const options = [
+    'Delete Domain',
+    'Delete Record',
+  ];
   const title = pageTitle.length > 80 ? `${pageTitle.slice(0,89)}...` : pageTitle;
   return (
     <div className="result-container">
@@ -31,7 +36,7 @@ const Result: React.FC<MatchProps> = ({
             <span dangerouslySetInnerHTML={{ __html : title }} />
           </a>
         </h3>
-      <MenuButton/>
+      <MenuButton options={options} deleteDomain={deleteDomain} domain={domain}/>
       </div>
       <div className="result-text-container">
       <div className="result-text" dangerouslySetInnerHTML={{ __html : pageText }}/>
@@ -53,7 +58,6 @@ Result.propTypes = {
   pageTitle : PropTypes.any.isRequired,
   protocol : PropTypes.string.isRequired,
   domain : PropTypes.string.isRequired,
-  // text : PropTypes.string.isRequired,
   totalTimeSpent : PropTypes.number.isRequired,
   totalVisits : PropTypes.number.isRequired,
   lastVisitTime : PropTypes.any.isRequired,
