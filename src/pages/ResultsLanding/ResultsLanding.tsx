@@ -6,13 +6,12 @@ import HeaderLogged from '../../components/HeaderLogged/HeaderLogged';
 import Filters from '../../components/Filters/Filters';
 import './ResultsLanding.css';
 import ResultsContainer from '../../containers/ResultsContainer/ResultsContainer';
-import { fetchUserHistory,fetchUser, fetchUserDomainHistory } from '../../ApiClient';
+import { fetchUserHistory,fetchUser, fetchUserDomainHistory, deleteOneRecord } from '../../ApiClient';
 import ModalSignUp from '../../components/ModalSignUp/ModalSignUp';
 import BackToTop from '../../components/BackToTop/BackToTop';
 
 const ResultsLanding: React.FC = () => {
   const pathName = useLocation().pathname.replace('/search','').replace('/','');
-  const pathNameDomain = useLocation().pathname.replace('/searchdomain','').replace('/','');
   const [numResults,setNumResults] = useState(0);
   const [took,setTook] = useState(0);
   const [results,setResults] = useState([]);
@@ -70,7 +69,13 @@ const ResultsLanding: React.FC = () => {
     fetchUserDomainHistory(domain)
       .then((res:any) => res.json())
       .then((res:any) => {
-        console.log(query, 'query');
+        updateResults();
+      })
+  }
+  const deleteOneRec = (url:any) => {
+    deleteOneRecord(url)
+      .then((res:any) => res.json())
+      .then((res:any) => {
         updateResults();
       })
   }
@@ -137,7 +142,7 @@ const ResultsLanding: React.FC = () => {
     <>
       <HeaderLogged page="results" clearQuery={clearQuery} updateQuery={updateQuery} query={query} userAvatar={userAvatar} />
       <Filters />
-      <ResultsContainer deleteDomain={deleteDomain} numResults={numResults} updateResults={updateResultsFromScroll} results={results} took={took} />
+      <ResultsContainer deleteDomain={deleteDomain} deleteOneRec={deleteOneRec} numResults={numResults} updateResults={updateResultsFromScroll} results={results} took={took} />
       <ModalSignUp show={signmodal} handleSignClose={hideSignModal} />
       <BackToTop backToTop={backToTop} hasScrolled={hasScrolled} />
     </>

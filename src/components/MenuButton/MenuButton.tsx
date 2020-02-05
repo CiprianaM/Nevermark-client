@@ -11,11 +11,13 @@ interface ChosenOpt {
   options: string[];
   deleteDomain: any;
   domain: any;
+  deleteOneRec: any;
+  url: any;
 }
 
 const ITEM_HEIGHT = 48;
 const LongMenu: React.FC<ChosenOpt> = ({
-  options, deleteDomain, domain }) => {
+  options, deleteDomain, domain, deleteOneRec, url }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -26,6 +28,8 @@ const LongMenu: React.FC<ChosenOpt> = ({
   const handleClose = (e:any, someString:any) => {
     if (someString==='Delete Domain') {
       deleteDomain(domain);
+    } else {
+      deleteOneRec(url);
     }
     setAnchorEl(null);
   };

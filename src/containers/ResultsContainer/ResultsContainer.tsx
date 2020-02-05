@@ -19,6 +19,7 @@ interface IResult {
   lastVisitTime:any;
   pageText:any;
   deleteDomain: any;
+  deleteOneRec: any;
 
 }
 interface IResults{
@@ -28,11 +29,12 @@ interface IResults{
   numResults: number;
   took: number;
   deleteDomain: any;
+  deleteOneRec?: any;
 }
 // TODO: add number of page etc...
 
 const ResultsContainer: React.FC<IResults> = ({
-  results,updateResults,numResults,took,error, deleteDomain
+  results,updateResults,numResults,took,error, deleteDomain, deleteOneRec
 }) => {
   const resultMatches: Array<IResult> = [];
   if (!results || error) {
@@ -76,6 +78,7 @@ const ResultsContainer: React.FC<IResults> = ({
               // key={result.createdAt}
               <div className="results-elements-container">
                 <Result
+                  deleteOneRec={deleteOneRec}
                   deleteDomain={deleteDomain}
                   url={result.url}
                   pageTitle={result.pageTitle}
@@ -102,7 +105,8 @@ ResultsContainer.propTypes = {
   updateResults : PropTypes.func.isRequired,
   numResults : PropTypes.number.isRequired,
   took : PropTypes.number.isRequired,
-  deleteDomain: PropTypes.func
+  deleteDomain: PropTypes.func,
+  deleteOneRec: PropTypes.func
 };
 
 export default ResultsContainer;
