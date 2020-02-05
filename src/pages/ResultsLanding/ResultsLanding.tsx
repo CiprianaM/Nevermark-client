@@ -127,7 +127,7 @@ const ResultsLanding: React.FC = () => {
 
   return (
     <>
-      <HeaderLogged clearQuery={clearQuery} updateQuery={updateQuery} query={query} userAvatar={userAvatar} />
+      <HeaderLogged page="results" clearQuery={clearQuery} updateQuery={updateQuery} query={query} userAvatar={userAvatar} />
       <Filters />
       <ResultsContainer numResults={numResults} updateResults={updateResultsFromScroll} results={results} took={took} />
       <ModalSignUp show={signmodal} handleSignClose={hideSignModal} />

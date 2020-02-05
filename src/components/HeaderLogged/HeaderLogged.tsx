@@ -9,41 +9,44 @@ import UserMenu from '../UserMenu/UserMenu';
 import './HeaderLogged.css';
 
 interface SearchProps {
-  updateQuery: any;
-  clearQuery: any;
-  query:string;
-  userAvatar:any;
+  updateQuery?: any;
+  clearQuery?: any;
+  query?:string;
+  userAvatar?:any;
+  page?:string;
 }
 
 const HeaderLogged: React.FC<SearchProps> = ({
-  updateQuery,clearQuery,query,userAvatar,
+  updateQuery,clearQuery,query,userAvatar,page,
 }) => (
   <header className="header-logged">
-    <div className="search-bar-wrapper">
-      <div className="search-bar-container">
-        <div className="search-icon-container">
-          <img src={searchIcon} alt="Search Icon" className="search-icon" />
-        </div>
-        <div className="search-input-container">
-          <input
-            autoFocus
-            className="search-bar"
-            spellCheck="false"
-            autoComplete="off"
-            name="query"
-            placeholder="Search"
-            type="text"
-            value={query}
-            onChange={updateQuery}
-          />
-          <button className="x-button" type="submit" onClick={clearQuery}>
-            <span role="img" aria-label="clear search" className={query === undefined || (query && query.length >= 1) ? 'x see' : 'x not'}>
-              <img src={clearIcon} alt="Clear Input" className="clear-icon" />
-            </span>
-          </button>
+    {page === 'results' ? (
+      <div className="search-bar-wrapper">
+        <div className="search-bar-container">
+          <div className="search-icon-container">
+            <img src={searchIcon} alt="Search Icon" className="search-icon" />
+          </div>
+          <div className="search-input-container">
+            <input
+              autoFocus
+              className="search-bar"
+              spellCheck="false"
+              autoComplete="off"
+              name="query"
+              placeholder="Search"
+              type="text"
+              value={query}
+              onChange={updateQuery}
+            />
+            <button className="x-button" type="submit" onClick={clearQuery}>
+              <span role="img" aria-label="clear search" className={query === undefined || (query && query.length >= 1) ? 'x see' : 'x not'}>
+                <img src={clearIcon} alt="Clear Input" className="clear-icon" />
+              </span>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    ) : <></>}
     <div className="logo-container-logged">
       <Link to="/search">
         <span className="logo-logged">nevermark</span>
@@ -63,8 +66,8 @@ const HeaderLogged: React.FC<SearchProps> = ({
 );
 
 HeaderLogged.propTypes = {
-  updateQuery : PropTypes.func.isRequired,
-  clearQuery : PropTypes.func.isRequired,
+  updateQuery : PropTypes.func,
+  clearQuery : PropTypes.func,
   userAvatar : PropTypes.any,
 };
 
