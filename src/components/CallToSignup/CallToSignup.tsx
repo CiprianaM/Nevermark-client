@@ -15,7 +15,7 @@ const CallToSignup: React.FC<CallToSignupProps> = ({ handleSignOpen,handleLogOpe
     <div className="cts-cont">
       <div className="cts-cont-divider">
         <div className="title-phrase-cts-cont">
-          <h1 className="title-cts">Browser history search done properly.</h1>
+          <h1 className="title-cts">Browser history search done right.</h1>
           <h3 className="phrase-cts">We eliminate the need for bookmarks with our potent search algorithm.</h3>
           <button className="cts-submit" type="submit" onClick={handleSignOpen}>
             <span className="cts-submit-text">Sign Up</span>

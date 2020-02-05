@@ -22,8 +22,7 @@ const ModalSignUp: React.FC<ModalSignUpProps> = ({ show,handleSignClose }) => {
           </button>
         </div>
         <div className="title-modal-signup-cont">
-          <h3 className="modal-signup-title">Join</h3>
-          <span className="logo-modal">nevermark.</span>
+          <h3 className="modal-signup-title">Join nevermark.</h3>
         </div>
         <div className="description-modal-signup">
           Create an account to boost the power of your history search and never lose a website again.

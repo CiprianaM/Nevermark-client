@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 
+import logo from '../../assets/logo.svg';
+
 import './Footer.css';
 
 interface FooterProps {
@@ -15,6 +17,7 @@ const Footer: React.FC<FooterProps> = ({ handleSignOpen,handleLogOpen }) => (
     <div className="footer-els-container">
       <Link to="/">
         <div className="logo-footer">
+          <img src={logo} alt="nevermark logo" className="logo-icon-footer" />
           <span>nevermark</span>
         </div>
       </Link>

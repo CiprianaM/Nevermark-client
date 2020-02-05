@@ -41,7 +41,6 @@
 /* Elements */
 .logo-footer {
   font-size: 1.8rem;
-  font-style: italic;
   padding-bottom: 20px;
 }
 .footer-el {
@@ -68,4 +67,9 @@
   color: inherit;
   cursor: pointer;
   padding: 0px;
+}
+.logo-icon-footer {
+  height: 14px;
+  width: 14px;
+  align-self: center;
 }
