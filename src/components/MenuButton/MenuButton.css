@@ -1,3 +1,10 @@
 .MuiIconButton-root {
   padding: 0 !important;
 }
+
+.MuiPaper-root .MuiMenu-paper .MuiPopover-paper .MuiPaper-elevation8 .MuiPaper-rounded {
+  width: 120px !important;
+}
+element.style .MuiPaper-root .MuiMenu-paper .MuiPopover-paper .MuiPaper-elevation8 .MuiPaper-rounded {
+  width: 120px !important;
+}

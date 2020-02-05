@@ -1,4 +1,4 @@
-const FETCH_OPTIONS:{} = {
+const FETCH_OPTIONS:any = {
   method : 'GET',
   cache : 'no-cache',
   credentials : 'include',
@@ -24,6 +24,7 @@ const fetchUserHistory:Function = async (search:String = '',pageNumber:any = '1'
     let fetchUrl = `${SERVER_URL}/${DEFAULT_ROUTE}`;
     if (search)fetchUrl += `/${search.trim()}`;
     fetchUrl += `/${String(pageNumber)}`;
+    console.log(fetchUrl, 'this is the fetch url', FETCH_OPTIONS, 'these are the fetch options')
     const res = await fetch(fetchUrl,FETCH_OPTIONS);
     return res;
   } catch (e) {
@@ -33,4 +34,26 @@ const fetchUserHistory:Function = async (search:String = '',pageNumber:any = '1'
   }
 };
 
-export { fetchUserHistory,fetchUser };
+const fetchUserDomainHistory:Function = async (domain:String = '') => {
+  try {
+    const DEFAULT_ROUTE = 'domain';
+    const fetchOpt:any = {
+      cache : 'no-cache',
+      credentials : 'include',
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({domain})
+    }
+    let fetchUrl = `${SERVER_URL}/${DEFAULT_ROUTE}`;
+    const res = await fetch(fetchUrl, fetchOpt);
+    return res;
+  } catch (e) {
+    const err = await (e.text ? e.text() : e);
+
+    return { error : err };
+  }
+};
+
+export { fetchUserHistory,fetchUser, fetchUserDomainHistory };

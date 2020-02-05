@@ -7,26 +7,15 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import './MenuButton.css';
 
-const options = [
-  'None',
-  'Atria',
-  'Callisto',
-  'Dione',
-  'Ganymede',
-  'Hangouts Call',
-  'Luna',
-  'Oberon',
-  'Phobos',
-  'Pyxis',
-  'Sedna',
-  'Titania',
-  'Triton',
-  'Umbriel',
-];
+interface ChosenOpt {
+  options: string[];
+  deleteDomain: any;
+  domain: any;
+}
 
 const ITEM_HEIGHT = 48;
-
-export default function LongMenu() {
+const LongMenu: React.FC<ChosenOpt> = ({
+  options, deleteDomain, domain }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -34,7 +23,10 @@ export default function LongMenu() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (e:any, someString:any) => {
+    if (someString==='Delete Domain') {
+      deleteDomain(domain);
+    }
     setAnchorEl(null);
   };
 
@@ -58,12 +50,12 @@ export default function LongMenu() {
         PaperProps={{
           style: {
             maxHeight: ITEM_HEIGHT * 4.5,
-            width: 200,
+            width: 120,
           },
         }}
       >
         {options.map(option => (
-          <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
+          <MenuItem key={option} onClick={(e)=>handleClose(e,option)}  value={option}>
             {option}
           </MenuItem>
         ))}
@@ -71,3 +63,4 @@ export default function LongMenu() {
     </div>
   );
 }
+export default LongMenu;
