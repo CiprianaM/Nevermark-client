@@ -13,10 +13,12 @@ import BackToTop from '../../components/BackToTop/BackToTop';
 const ResultsLanding: React.FC = () => {
   const pathName = useLocation().pathname.replace('/search','').replace('/','');
   const [numResults,setNumResults] = useState(0);
+  const [took,setTook] = useState(0);
   const [results,setResults] = useState([]);
   const [query,setQuery] = useState(pathName);
   const [page,setPage] = useState(1);
   const [signmodal,setSignmodal] = useState(0);
+  const [userAvatar,setUserAvatar] = useState('hello');
   const [hasScrolled,setHasScrolled] = useState(false);
   const history = createBrowserHistory();
   const showSignModal = () => {
@@ -36,7 +38,12 @@ const ResultsLanding: React.FC = () => {
       })
       .then((res:any) => (res.error ? res : res.json()))
       .then((res:any) => {
-        if (!res.error) { updateResults(); }
+        if (!res.error) {
+          console.log(res.picture);
+
+          setUserAvatar(res.picture);
+          updateResults();
+        }
       });
   };
 
@@ -49,6 +56,7 @@ const ResultsLanding: React.FC = () => {
       .then((res:any) => {
         setResults(res.results);
         setNumResults(res.nbHits);
+        setTook(res.took);
         if (res.nbPages > 1) {
           setPage(2);
         }
@@ -119,9 +127,9 @@ const ResultsLanding: React.FC = () => {
 
   return (
     <>
-      <HeaderLogged clearQuery={clearQuery} updateQuery={updateQuery} query={query} />
+      <HeaderLogged clearQuery={clearQuery} updateQuery={updateQuery} query={query} userAvatar={userAvatar} />
       <Filters />
-      <ResultsContainer numResults={numResults} updateResults={updateResultsFromScroll} results={results} />
+      <ResultsContainer numResults={numResults} updateResults={updateResultsFromScroll} results={results} took={took} />
       <ModalSignUp show={signmodal} handleSignClose={hideSignModal} />
       <BackToTop backToTop={backToTop} hasScrolled={hasScrolled} />
     </>

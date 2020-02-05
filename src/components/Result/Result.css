@@ -16,6 +16,12 @@
   justify-content: space-between;
 
 }
+.result-text-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
 .last-row {
   display: flex;
   flex-direction: row;
@@ -25,6 +31,7 @@
 .result-title {
   font-size: 1.6rem;
   padding-bottom: 10px;
+  align-self: center;
 }
 .result-text {
   font-size: 1.4rem;

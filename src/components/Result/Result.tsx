@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import MenuButton from '../MenuButton/MenuButton';
 import './Result.css';
 
 interface MatchProps {
@@ -30,9 +31,14 @@ const Result: React.FC<MatchProps> = ({
             <span dangerouslySetInnerHTML={{ __html : title }} />
           </a>
         </h3>
-        <span className="timespent">{lastVisitTime}</span>
+      <MenuButton/>
       </div>
-      <div className="result-text" dangerouslySetInnerHTML={{ __html : pageText }} />
+      <div className="result-text-container">
+      <div className="result-text" dangerouslySetInnerHTML={{ __html : pageText }}/>
+        <span className="timespent">{lastVisitTime}</span>
+
+      </div>
+
       <div className="last-row">
         <a href={`${protocol}://${url}`} className="result-url" target="_blank" rel="noopener noreferrer">{shortUrl}</a>
         <h4 className="num-visits timespent">{`${totalVisits}${totalVisits === 1 ? ' visit' : ' visits'}`}</h4>
