@@ -17,10 +17,11 @@ interface MatchProps {
   domain:string;
   pageText:string;
   deleteDomain: any;
+  deleteOneRec: any;
 }
 // {`${Math.round(totalTimeSpent / 1000)} minutes.`}
 const Result: React.FC<MatchProps> = ({
-  url,pageTitle,protocol,shortUrl,domain,lastVisitTime,pageText,totalVisits, deleteDomain
+  url,pageTitle,protocol,shortUrl,domain,lastVisitTime,pageText,totalVisits, deleteDomain, deleteOneRec
 }) => {
   const options = [
     'Delete Domain',
@@ -36,7 +37,7 @@ const Result: React.FC<MatchProps> = ({
             <span dangerouslySetInnerHTML={{ __html : title }} />
           </a>
         </h3>
-      <MenuButton options={options} deleteDomain={deleteDomain} domain={domain}/>
+      <MenuButton options={options} deleteOneRec={deleteOneRec} deleteDomain={deleteDomain} domain={domain} url={url}/>
       </div>
       <div className="result-text-container">
       <div className="result-text" dangerouslySetInnerHTML={{ __html : pageText }}/>
