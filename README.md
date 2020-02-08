@@ -27,7 +27,7 @@ The chrome-extension repository can be found at: [Nevermark Chrome-Extension](ht
 - TypeScript
 
 ## Contributing
-We built nevermak in 10 days on a race against time.  There is a lot of room for improvement.  If you feel like it, you're more than welcome to contribute to the project.  Just fork the repository and submit a pull request.  Thanks in advance!
+We built nevermark in 10 days on a race against time.  There is a lot of room for improvement.  If you feel like it, you're more than welcome to contribute to the project.  Just fork the repository and submit a pull request.  Thanks in advance!
 
 ## Team
 - Aleksi Ylönen > [Github](https://github.com/Buzzaw91) | [LinkedIn](https://www.linkedin.com/in/aleksi-yl%C3%B6nen-b07820194/)
