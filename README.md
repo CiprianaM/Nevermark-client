@@ -35,7 +35,7 @@ npm start
 - [TypeScript](https://www.typescriptlang.org/)
 
 ## Contact
-You can contact us us [via email](mailto:hello@nevermark.com).
+You can contact us [via email](mailto:hello@nevermark.com).
 
 ## Contributing
 We built nevermark in 10 days on a race against time.  There is a lot of room for improvement.  If you feel like it, you're more than welcome to contribute to the project.  Just fork the repository and submit a pull request.  Thanks in advance!
