@@ -9,7 +9,9 @@ nevermark is an app designed to help you better track and interact with your bro
 ## Getting Started
 
 This is the front-end repository.
+
 The back-end repository can be found at: [Nevermark Back-End](https://github.com/CiprianaM/Nevermark-server)
+
 The chrome-extension repository can be found at: [Nevermark Chrome-Extension](https://github.com/CiprianaM/Nevermark-extension)
 
 1. Clone the repository:
