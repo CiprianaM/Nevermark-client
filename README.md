@@ -13,11 +13,11 @@ The back-end repository can be found at: [Nevermark Back-End](https://github.com
 The chrome-extension repository can be found at: [Nevermark Chrome-Extension](https://github.com/CiprianaM/Nevermark-extension)
 
 1. Clone the repository:
-```git clone https://github.com/CiprianaM/Nevermark-client.git
+```git clone https://github.com/CiprianaM/Nevermark-client.git```
 2. Install the dependencies:
-```npm install
+```npm install```
 3. Start the front-end application:
-```npm start
+```npm start```
 
 ## Tech Stack
 
