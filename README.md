@@ -1,7 +1,7 @@
 # Nevermark-client
 
 <p align="center">
-  <img src="src/assets/logo-github.png" />
+  <img src="src/assets/logo-readme.png" />
 </p>
 
 Nevermark is an app designed to help you better track and interact with your browser history.
