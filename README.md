@@ -1,10 +1,8 @@
-# Nevermark-client
-
 <p align="center">
   <img src="src/assets/logo-readme.png" />
 </p>
 
-Nevermark is an app designed to help you better track and interact with your browser history.
+nevermark is an app designed to help you better track and interact with your browser history by recording not only the title and the URL of the pages you visit but also the rest of the content.  This makes searching through your browsing history a more pleasant experience.  You can think of it as a browser history with steroids.
 
 ## Screenshots
 
